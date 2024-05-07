@@ -146,6 +146,21 @@ app.get('/profil', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'frontend', 'profil.html'));
 });
 
+// changer app.get('/profil') plus tard pour vider la page mais d'abord règler les problemes
+// app.get('/profil', (req, res) => {
+//     if (req.isAuthenticated()) {
+//         // L'utilisateur est connecté, renvoyer les données du profil
+//         res.sendFile(path.join(__dirname, 'frontend', 'profil.html'));
+//     } else {
+//         // L'utilisateur n'est pas connecté, renvoyer une page d'erreur ou une redirection vers la page de connexion
+//         res.redirect('/login'); // Redirection vers la page de connexion
+//         // OU
+//         // res.status(401).send('Accès non autorisé. Veuillez vous connecter.'); // Page d'erreur
+//     }
+// });
+
+
+
 app.get('/userData', (req, res) => {
     if (req.isAuthenticated()) {
         const userData = {
