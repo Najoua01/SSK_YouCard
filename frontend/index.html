@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
+    <title>Accueil</title>
+</head>
+<body>
+    <nav>
+        <a href="/">Accueil</a>
+        <a href="/devenir-membre">Devenir membre</a>
+        <a href="/profil">Profil</a>
+    </nav>
+
+    <div class="container">
+        <h1>Bienvenue sur notre site</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla fringilla ligula non eros aliquam, eget interdum urna volutpat. Quisque nec sapien eget justo fringilla placerat. Vivamus varius scelerisque libero sit amet vestibulum.</p>
+
+        <div class="subscription">
+            <h2 onclick="toggleDetails(this)">Free <span class="arrow">▼</span></h2>
+            <div class="details">Abonnement gratuit avec des fonctionnalités de base.</div>
+        </div>
+
+        <div class="subscription">
+            <h2 onclick="toggleDetails(this)">Avantages + <span class="arrow">▼</span></h2>
+            <div class="details">Abonnement avec des avantages supplémentaires.</div>
+        </div>
+
+        <div class="subscription">
+            <h2 onclick="toggleDetails(this)">Avantages +++ <span class="arrow">▼</span></h2>
+            <div class="details">Abonnement premium avec de nombreux avantages exclusifs.</div>
+        </div>
+    </div>
+
+    <script>
+        function toggleDetails(title) {
+            title.parentElement.classList.toggle('expanded');
+        }
+    </script>
+</body>
+</html>

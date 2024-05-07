@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentification</title>
+    <link rel="stylesheet" href="./form.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../script.js"></script>
+
+</head>
+<body>
+    <nav>
+        <a href="/">Accueil</a>
+        <a href="/devenir-membre">Devenir membre</a>
+        <a href="/profil">Profil</a>
+    </nav>
+
+    <main>
+        <div class="subscription-container">
+            <div class="subscription">
+                <h2>Free</h2>
+                <ul>
+                    <li>✔ avantage 1</li>
+                    <li>✔ avantage 2</li>
+                    <li>✔ avantage 3</li>
+                </ul>
+                <button>Choisir Free</button>
+            </div>
+            <div class="subscription">
+                <h2>Avantages +</h2>
+                <ul>
+                    <li>✔ avantage 1</li>
+                    <li>✔ avantage 2</li>
+                    <li>✔ avantage 3</li>
+                </ul>
+                <button>Choisir Avantages +</button>
+            </div>
+            <div class="subscription">
+                <h2>Avantages +++</h2>
+                <ul>
+                    <li>✔ avantage 1</li>
+                    <li>✔ avantage 2</li>
+                    <li>✔ avantage 3</li>
+                </ul>
+                <button>Choisir Avantages +++</button>
+            </div>
+        </div>
+        
+        <div class="form-container">
+            <form id="signup-form">
+                <h2>Inscription</h2>
+                <input type="text" placeholder="Nom" name="nom">
+                <br/>
+                <input type= "email" placeholder="Email" name="email">
+                <br/>
+                <input type="password" placeholder="Mot de passe" name="motdepasse">
+                <br/>
+                <button type="submit">S'inscrire</button>
+            </form>
+            <form id="login-form">
+                <h2>Connexion</h2>
+                <input type="text" placeholder="Nom d'utilisateur" name="username">
+                <br/>
+                <input type="password" placeholder="Mot de passe" name="motdepasse">
+                <br/>
+                <button type="submit">Se connecter</button>
+                <br/>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
