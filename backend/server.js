@@ -22,8 +22,8 @@ bcrypt.hash(password, saltrounds, (err, hash) => {
 });
 
 app.use(express.static(path.join(__dirname, '..', 'frontend')));
-app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(session({ 
     secret: 'secret', 
     resave: false, 
@@ -60,15 +60,15 @@ connection.query('SELECT * FROM users', (err, rows) => {
     console.log('Résultat de la requête :', rows);
 });
 
-// Configure Passport.js with LocalStrategy
+// Configure Passport.js with LocalStrategy pour comparer username et password == bd
 passport.use(new LocalStrategy(
     (username, password, done) => {
-        connection.query('SELECT * FROM users WHERE username = ? AND password = ?', [username,email, password], (err, results) => {
+        connection.query('SELECT * FROM users WHERE username = ?', [username], (err, results) => {
             if (err) {
                 return done(err);
             }
             if (results.length === 0) {
-                return done(null, false, { message: 'Nom d\'utilisateur ou mot de passe incorrect.' });
+                return done(null, false, { message: 'Nom d\'utilisateur incorrect.' });
             }
 
             const user = results[0];
@@ -110,10 +110,12 @@ app.get('/devenir-membre', (req, res) => {
 });
 
 app.post('/signup', async (req, res) => {
+    console.log('Corps de la requête:', req.body); // test
+
     const { username, email, password } = req.body;
 
     // Vérifier si tous les champs requis sont fournis
-    if (!username && !email || !password) {
+    if (!username || !email || !password) {
         return res.status(400).json({ error: 'Tous les champs sont obligatoires' });
     }
 
@@ -141,11 +143,7 @@ app.post('/login', passport.authenticate('local', {
 }));
 
 app.get('/profil', (req, res) => {
-    if (req.isAuthenticated()) {
-        res.sendFile(path.join(__dirname, 'frontend', 'profil.html'));
-    } else {
-        res.send('Accès non autorisé. Veuillez vous connecter.');
-    }
+    res.sendFile(path.join(__dirname, '..', 'frontend', 'profil.html'));
 });
 
 app.get('/logout', (req, res) => {
