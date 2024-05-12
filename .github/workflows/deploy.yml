@@ -1,0 +1,33 @@
+name: Deploy to GitHub Pages  # Nom du workflow
+
+on:
+  push:  # Déclencheur du workflow
+    branches:
+      - main  # Exécute le workflow sur les push vers la branche main
+
+jobs:  # Jobs que le workflow va exécuter
+  build-and-deploy:
+    runs-on: ubuntu-latest  # Type de machine virtuelle sur laquelle le job s'exécute
+
+    steps:  # Étapes du job
+    - name: Checkout  # Récupère le code du dépôt
+      uses: actions/checkout@v2
+
+    - name: Install Node.js  # Installe Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'  # Version de Node.js à utiliser
+
+    - name: Install dependencies  # Installe les dépendances npm
+      run: npm install
+
+    - name: Build  # Construit l'application React
+      run: npm run build
+
+    - name: Deploy to GitHub Pages  # Déploie le contenu construit sur GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH: gh-pages  # Branche sur GitHub où déployer le contenu
+        FOLDER: build  # Dossier contenant le contenu à déployer
+        CLEAN: true  # Nettoie les anciens fichiers lors du déploiement
