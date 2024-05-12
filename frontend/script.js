@@ -3,9 +3,9 @@ $(document).ready(function() {
         event.preventDefault(); // Empêche le formulaire de se soumettre normalement
         
         // Récupérer les valeurs entrées par l'utilisateur
-        var username = $('#signup-username').val();
-        var email = $('#signup-email').val();
-        var password = $('#signup-password').val();
+        let username = $('#signup-username').val();
+        let email = $('#signup-email').val();
+        let password = $('#signup-password').val();
 
         // console.log({username, email, password}); // test
 

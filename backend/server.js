@@ -1,3 +1,5 @@
+require('dotenv').config();
+// console.log(process.env.SENDGRID_API_KEY); test
 const express = require('express');
 const path = require('path');  // facilite le chemin des fichiers
 const mysql = require('mysql2');
@@ -7,6 +9,8 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const cors = require('cors');
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -18,7 +22,7 @@ bcrypt.hash(password, saltrounds, (err, hash) => {
         console.log('Erreur lors du hachage du mot de passe:', err);
         return;
     }
-    console.log('Mot de passe haché:', hash);
+    // console.log('Mot de passe haché:', hash); test
 });
 
 app.use(express.static(path.join(__dirname, '..', 'frontend')));
@@ -57,7 +61,7 @@ connection.query('SELECT * FROM users', (err, rows) => {
         console.error('Erreur lors de l\'exécution de la requête :', err);
         return;
     }
-    console.log('Résultat de la requête :', rows);
+    // console.log('Résultat de la requête :', rows); test
 });
 
 // Configure Passport.js with LocalStrategy pour comparer username et password == bd
@@ -99,7 +103,6 @@ passport.deserializeUser((id, done) => {
     });
 });
 
-
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'frontend', 'index.html'));
 });
@@ -110,8 +113,7 @@ app.get('/devenir-membre', (req, res) => {
 });
 
 app.post('/signup', async (req, res) => {
-    console.log('Corps de la requête:', req.body); // test
-
+    // console.log('Corps de la requête:', req.body); //test
     const { username, email, password } = req.body;
 
     // Vérifier si tous les champs requis sont fournis
@@ -126,12 +128,27 @@ app.post('/signup', async (req, res) => {
     connection.query(
         'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
         [username, email, hashedPassword],
-        (err, result) => {
+        async (err) => {
             if (err) {
                 console.error('Erreur lors de l\'insertion dans la base de données :', err);
                 return res.status(500).json({ error: 'Erreur interne du serveur' });
             }
-            return res.status(201).json({ message: 'Inscription réussie!' });
+            // définition en envoi de l'email de confirmation d'inscription
+            const msg = {
+                to: email,
+                from: 'najoua@tutamail.com',
+                subject: 'Confirmation de l\'inscription',
+                text: 'Merci de vous être inscrit. vueillez confirmer votre adresse mail en cliquant sur ce lien',
+                html: '<strong>Merci de vous être inscrit. Veuillez confirmer votre adresse email en cliquant sur ce lien.</strong>',
+            };
+            try {
+                await sgMail.send(msg);
+                console.log('Email sent');  
+                res.status(201).json({ message: 'Inscription réussie et email envoyé!' });
+            } catch (error) {
+                console.error('Erreur lors de l\'envoi de l\'email:', error);
+                res.status(500).json({ error: 'Erreur lors de l\'envoi de l\'email' });
+            }
         }
     );
 });
