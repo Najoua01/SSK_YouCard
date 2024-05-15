@@ -152,6 +152,8 @@ app.get('/profil', (req, res) => {
 });
 
 app.get('/userData', (req, res) => {
+    console.log(req.session); // Debug session
+    console.log(req.user); // Debug user
     if (req.isAuthenticated()) {
         const userData = {
             nom: req.user.nom ? req.user.nom : "Non spécifié",

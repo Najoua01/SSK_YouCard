@@ -1,76 +1,106 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const signupForm = document.getElementById('signup-form');
-    signupForm.addEventListener('submit', function(event) {
-        event.preventDefault();
+$(document).ready(function() {
+    $('#signup-form').submit(function(event) {
+        event.preventDefault(); // Empêche le formulaire de se soumettre normalement
         
-        let username = document.getElementById('signup-username').value;
-        let email = document.getElementById('signup-email').value;
-        let password = document.getElementById('signup-password').value;
-
-        fetch('/signup', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, email, password })
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert('Inscription réussie!');
-        })
-        .catch(err => {
-            console.log('Erreur AJAX:', err);
-            alert('Erreur lors de l\'inscription : ' + err.message);
+        // Récupérer les valeurs entrées par l'utilisateur
+        let username = $('#username-signup').val();
+        let email = $('#email-signup').val();
+        let password = $('#password-signup').val();
+        
+        if (!username || !email || !password) {
+            alert('Tous les champs sont obligatoires.');
+            return;
+        }
+        // console.log({username, email, password}); // test
+        // Envoyer les données via AJAX
+        $.ajax({
+            type: 'POST',
+            url: '/signup',
+            data: { username: username, email: email, password: password },
+            success: function(response) {
+                alert('Inscription réussie!');
+                $('#username-signup').val('');
+                $('#email-signup').val('');
+                $('#password-signup').val('');
+            },
+            error: function(err) {
+                alert('Erreur lors de l\'inscription : ' + err.responseJSON.error);
+            }
         });
     });
 
-    const loginForm = document.getElementById('login-form');
-    loginForm.addEventListener('submit', function(event) {
+    $('#login-form').submit(function(event) {
         event.preventDefault();
+        
+        let username = $('#login-username').val();
+        let password = $('#login-password').val();
+        
+        // console.log({username, password}); // test
 
-        let username = document.getElementById('login-username').value;
-        let password = document.getElementById('login-password').value;
-
-        fetch('/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password })
-        })
-        .then(response => response.json())
-        .then(data => {
-            window.location.href = '/profil';    
-        })
-        .catch(err => {
-            alert('Erreur lors de la connexion:', (err.message || 'Erreur inconnue'));
+        $.ajax({
+            type: 'POST',
+            url: '/login',
+            data: { username, password },
+            success: function(response) {
+                window.location.href = '/profil';
+            },
+            error: function(err) {
+                alert('Erreur lors de la connexion:', (err.responseJSON?.error || 'Erreur inconnue'));
+            }
         });
     });
 
     function getUserData() {
-        fetch('/userdata', {
-            method: 'GET'
-        })
-        .then(response => response.json())
-        .then(data => {
-            document.querySelector('.profile p:nth-child(1)').textContent = 'Nom: ' + data.nom;
-            document.querySelector('.profile p:nth-child(2)').textContent = 'Prénom: ' + data.prenom;
-            document.querySelector('.profile p:nth-child(3)').textContent = 'Email: ' + data.email;
-            document.querySelector('.profile p:nth-child(4)').textContent = 'Ville: ' + data.ville;
-        })
-        .catch(err => {
-            console.log('Erreur lors de la récupération des données de l\'utilisateur:', err);
+        $.ajax({
+            type: 'GET',
+            url: '/userdata',
+            xhrFields: {
+                withCredentials: true
+            },
+            success: function(response) {
+                // Mettre à jour les éléments HTML avec les données reçues
+                $('.profile p:nth-child(1)').text('Nom: ' + response.nom);
+                $('.profile p:nth-child(2)').text('Email: ' + response.email);
+                $('.profile p:nth-child(3)').text('Pays: ' + response.pays);
+                $('.profile p:nth-child(4)').text('Âge: ' + response.age);
+            },
+            error: function(err) {
+                console.log('Erreur lors de la récupération des données de l\'utilisateur:', err);
+            }
         });
     }
+
     getUserData();
 
-    const logoutBtn = document.getElementById('logout-btn');
-    logoutBtn.addEventListener('click', function() {
-        fetch('/logout', {
-            method: 'GET'
-        })
-        .then(response => response.json())
-        .then(data => {
-            window.location.href = '/';
-        })
-        .catch(err => {
-            console.error('Erreur lors de la déconnexion:', err);
+    $('#logout-btn').click(function() {
+        $.ajax({
+            type: 'GET',
+            url: '/logout',
+            success: function(response) {
+                window.location.href = '/';
+            },
+            error: function(err) {
+                console.error('Erreur lors de la déconnexion:', err);
+            }
         });
     });
+
+    $(document).ready(function() {
+        $.ajax({
+            type: 'GET',
+            url: '/check-auth',
+            xhrFields: { withCredentials: true },
+            success: function(response) {
+                if (response.authenticated) {
+                    $('#logout-btn').show();
+                    $('#login-btn').hide();
+                    // Chargement des données utilisateur, si nécessaire
+                } else {
+                    $('#logout-btn').hide();
+                    $('#login-btn').show();
+                }
+            }
+        });
+    });
+
 });
