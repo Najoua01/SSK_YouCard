@@ -1,0 +1,49 @@
+.section-act{
+    margin: 20px 150px;
+    margin-bottom: 100px;
+}
+.home-titles{
+    margin: 30px 10px;
+    color: #038D9A;
+}
+
+.container-act{
+    /* position: relative;
+    display: flex;
+    align-items: center; */
+    
+    width: 100%;
+    background-color: #fff;
+    border: 2px solid #cecece;
+    border-radius: 15px;
+    /* padding: 20px 40px; */
+}
+.dates p{
+    font-size: 18px;
+    padding: 12px 100px;
+    color: #707070;
+}
+.actu-titles h2{
+    font-size: 20px;
+    padding: 12px 89px;
+    /* padding-left: 30px; */
+    color: #707070;
+}
+.actu-titles span {
+    font-size: 18px;
+    font-weight: 600;
+    padding-right: 80px;
+    color: #707070;
+}
+/*   */
+.container-act hr {
+    width: 100%;
+    /* position: absolute;
+    left: 0; */
+}
+p {
+    text-align: right;
+    font-size: 19px;
+    color: #038D9A;
+    padding-top: 10px;
+}

@@ -1,0 +1,52 @@
+.section-ag{
+    margin: 20px 150px;
+    margin-bottom: 100px;
+}
+ p {
+    text-align: right;
+    font-size: 19px;
+    color: #038D9A;
+}
+.home-titles{
+    margin: 30px 10px;
+    color: #038D9A;
+}
+.container-ag{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.agenda-act{
+    border: 2px solid #cecece;
+    background-color: #fff;
+    border-radius: 15px;
+    
+    margin-left:40px;
+    width: 100%;
+    text-align: left;
+}
+.agenda-act hr {
+    width: 100%;
+    /* position: absolute;
+    left: 0; */
+}
+.agenda-act h2 {
+    color: #707070;
+    font-size: 21px;
+    padding: 7px 30px 2px 30px;
+}
+.agenda-act p {
+    color: #707070;
+    font-size: 16px;
+    padding: 2px 30px 7px 30px;
+    text-align: left;
+}
+.line {
+    height: 1px;
+    background-color: #ccc;
+    margin: 16px 0;
+  }
+  img{
+    width: 95%;
+  }

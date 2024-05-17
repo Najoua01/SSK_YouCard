@@ -1,6 +1,6 @@
 import React from 'react'
 import'./Navbar.css'
-const Navbar = () => {
+function Navbar () {
   return (
     <nav className='container'>
       <h1> Youcard</h1>
