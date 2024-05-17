@@ -28,7 +28,7 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors({
-    origin: 'http://localhost:8000',
+    origin: 'http://localhost:3000',
     credentials: true
 }));
 
@@ -113,14 +113,6 @@ passport.deserializeUser((id, done) => {
 //     }
 // });
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'frontend', 'public', 'index.html'));
-});
-
-app.get('/devenir-membre', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'frontend', 'src', 'form.html'));
-});
-
 app.post('/signup', async (req, res) => {
     const { username, email, password } = req.body;
 
@@ -186,10 +178,6 @@ app.post('/login', passport.authenticate('local', {
     failureFlash: true
 }));
 
-app.get('/profil', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'frontend', 'src', 'profil.html'));
-});
-
 app.get('/userData', (req, res) => {
     if (req.isAuthenticated()) {
         const userData = {
@@ -219,6 +207,10 @@ app.get('/check-auth', (req, res) => {
     } else {
         res.json({ authenticated: false });
     }
+});
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'frontend', 'public', 'index.html'));
 });
 
 app.listen(PORT, () => {

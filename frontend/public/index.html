@@ -1,42 +1,20 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil</title>
-    <link rel="stylesheet" href="css/index.css">
-</head>
-<body>
-    <nav>
-        <a href="/">Accueil</a>
-        <a href="/devenir-membre">Devenir membre</a>
-        <a href="/profil">Profil</a>
-    </nav>
-
-    <div class="container">
-        <h1>Bienvenue sur notre site</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla fringilla ligula non eros aliquam, eget interdum urna volutpat. Quisque nec sapien eget justo fringilla placerat. Vivamus varius scelerisque libero sit amet vestibulum.</p>
-
-        <div class="subscription">
-            <h2 onclick="toggleDetails(this)">Free <span class="arrow">▼</span></h2>
-            <div class="details">Abonnement gratuit avec des fonctionnalités de base.</div>
-        </div>
-
-        <div class="subscription">
-            <h2 onclick="toggleDetails(this)">Avantages + <span class="arrow">▼</span></h2>
-            <div class="details">Abonnement avec des avantages supplémentaires.</div>
-        </div>
-
-        <div class="subscription">
-            <h2 onclick="toggleDetails(this)">Avantages +++ <span class="arrow">▼</span></h2>
-            <div class="details">Abonnement premium avec de nombreux avantages exclusifs.</div>
-        </div>
-    </div>
-
-    <script>
-        function toggleDetails(title) {
-            title.parentElement.classList.toggle('expanded');
-        }
-    </script>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#000000" />
+        <meta
+        name="description"
+        content="Web site created using create-react-app"
+        />
+        <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+        <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+        <title>React App</title>
+    </head>
+    <body>
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <div id="root"></div>
 </body>
 </html>
