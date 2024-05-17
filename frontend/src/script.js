@@ -3,12 +3,12 @@ $(document).ready(function() {
         event.preventDefault(); // Empêche le formulaire de se soumettre normalement
         
         // Récupérer les valeurs entrées par l'utilisateur
-        let username = $('#username-signup').val();
-        let email = $('#email-signup').val();
-        let password = $('#password-signup').val();
-        
+        let username = $('#signup-username').val();
+        let email = $('#signup-email').val();
+        let password = $('#signup-password').val();
+
         if (!username || !email || !password) {
-            alert('Tous les champs sont obligatoires.');
+            alert('Tous les champs sont obligatoires. script.js');
             return;
         }
         // console.log({username, email, password}); // test
@@ -19,9 +19,9 @@ $(document).ready(function() {
             data: { username: username, email: email, password: password },
             success: function(response) {
                 alert('Inscription réussie!');
-                $('#username-signup').val('');
-                $('#email-signup').val('');
-                $('#password-signup').val('');
+                $('#signup-username').val('');
+                $('#signup-email').val('');
+                $('#signup-password').val('');
             },
             error: function(err) {
                 alert('Erreur lors de l\'inscription : ' + err.responseJSON.error);

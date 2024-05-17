@@ -8,6 +8,7 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const cors = require('cors');
+// const nodemailer = require('nodemailer');
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -104,6 +105,14 @@ passport.deserializeUser((id, done) => {
     });
 });
 
+// let transporter = nodemailer.createTransport({
+//     service: 'gmail', 
+//     auth: {
+//         user: 'your-email@gmail.com',
+//         pass: 'your-password'
+//     }
+// });
+
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'frontend', 'public', 'index.html'));
 });
@@ -113,33 +122,63 @@ app.get('/devenir-membre', (req, res) => {
 });
 
 app.post('/signup', async (req, res) => {
-    console.log('Corps de la requête:', req.body); //test
     const { username, email, password } = req.body;
 
-    // Vérifier si tous les champs requis sont fournis
-    if (!username || !email || !password) {
-        return res.status(400).json({ error: 'Tous les champs sont obligatoires' });
-    }
-    try{
-        // Hacher le mot de passe
-        const hashedPassword = await bcrypt.hash(password, saltrounds);
+    // Vérifier si l'email est déjà présent dans la base de données
+    connection.query(
+        'SELECT * FROM users WHERE email = ?',
+        [email],
+        async (err, results) => {
+            if (err) {
+                console.error('Erreur lors de la recherche de l\'email dans la base de données :', err);
+                return res.status(500).json({ error: 'Erreur interne du serveur' });
+            }
+            if (results.length > 0) {
+                // L'email est déjà présent dans la base de données
+                return res.status(400).json({ error: 'Vous êtes déjà inscrit.' });
+            } else {
+                // L'email n'est pas déjà présent dans la base de données, procéder à l'inscription
+                try {
+                    const hashedPassword = await bcrypt.hash(password, saltrounds);
 
-        // Insérer l'utilisateur dans la base de données
-        connection.query(
-            'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
-            [username, email, hashedPassword],
-            async (err) => {
-                if (err) {
-                    console.error('Erreur lors de l\'insertion dans la base de données :', err);
-                    return res.status(500).json({ error: 'Erreur interne du serveur' });
+                    connection.query(
+                        'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
+                        [username, email, hashedPassword],
+                        async (err) => {
+                            if (err) {
+                                console.error('Erreur lors de l\'insertion dans la base de données :', err);
+                                return res.status(500).json({ error: 'Erreur interne du serveur' });
+                            }
+                            res.status(200).json({ message: 'Inscription réussie!' });
+                        }
+                    );
+                } catch (error) {
+                    console.error('Erreur lors du hachage du mot de passe :', error);
+                    res.status(500).json({ error: 'Erreur interne du serveur' });
                 }
-                res.status(200).json({ message: 'Inscription réussie et email envoyé!' });
-        });
-    } catch (error) {
-        console.error('Erreur lors du hachage du mot de passe :', error);
-        res.status(500).json({ error: 'Erreur interne du serveur' });
-    }
+            }
+        }
+    );
 });
+
+    // ceci est a rajouter dans app.post('/signup') si besoin de nodemailer
+    // let mailOptions = {
+    //     from: 'your-email@gmail.com',
+    //     to: email,
+    //     subject: 'Confirmation d\'inscription',
+    //     text: `Bonjour ${username},\n\nMerci de vous être inscrit sur notre site. Veuillez confirmer votre adresse email en cliquant sur le lien suivant: [Insérer un lien de confirmation]`
+    // };
+
+    // // Envoyer l'email
+    // transporter.sendMail(mailOptions, (error, info) => {
+    //     if (error) {
+    //         console.log('Erreur lors de l\'envoi de l\'email:', error);
+    //         res.status(500).send('Erreur lors de l\'envoi de l\'email');
+    //     } else {
+    //         console.log('Email envoyé: ' + info.response);
+    //         res.status(200).send('Inscription réussie et email envoyé');
+    //     }
+    // });
 
 app.post('/login', passport.authenticate('local', {
     successRedirect: '/profil',
