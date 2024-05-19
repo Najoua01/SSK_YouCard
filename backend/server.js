@@ -37,7 +37,7 @@ const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'auth'
+    database: 'youCardBD'
 });
 
 // Connectez-vous à la base de données
@@ -46,7 +46,7 @@ connection.connect((err) => {
         console.error('Erreur de connexion à la base de données :', err);
         return;
     }
-    console.log('Connecté à la base de données MySQL');
+    console.log('Connecté à la base de données MySQL'); // test
 });
 
 // Utilisez la connexion pour exécuter des requêtes SQL
@@ -66,15 +66,16 @@ bcrypt.hash(password, saltrounds, (err, hash) => {
     // console.log('Mot de passe haché:', hash); test
 });
 
-// Configure Passport.js with LocalStrategy pour comparer username et password == bd
+// Configure Passport.js with LocalStrategy pour comparer email et password == bd de la connexion
 passport.use(new LocalStrategy(
-    (username, password, done) => {
-        connection.query('SELECT * FROM users WHERE username = ?', [username], (err, results) => {
+    {usernameField: 'email'}, // indique que email sera l'inditifiant
+    (email, password, done) => {
+        connection.query('SELECT * FROM users WHERE email = ?', [email], (err, results) => {
             if (err) {
                 return done(err);
             }
             if (results.length === 0) {
-                return done(null, false, { message: 'Nom d\'utilisateur incorrect.' });
+                return done(null, false, { message: 'Adresse mail incorrect.' });
             }
 
             const user = results[0];
@@ -114,7 +115,7 @@ passport.deserializeUser((id, done) => {
 // });
 
 app.post('/signup', async (req, res) => {
-    const { username, email, password } = req.body;
+    const { nom, prenom, dateNaiss, email, pays, codePostal, password } = req.body;
 
     // Vérifier si l'email est déjà présent dans la base de données
     connection.query(
@@ -134,8 +135,8 @@ app.post('/signup', async (req, res) => {
                     const hashedPassword = await bcrypt.hash(password, saltrounds);
 
                     connection.query(
-                        'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
-                        [username, email, hashedPassword],
+                        'INSERT INTO users (nom, prenom, dateNaiss, email, pays, codePostal, password) VALUES (?, ?, ?, ?, ?, ?, ?)',
+                        [nom, prenom, dateNaiss, email, pays, codePostal, hashedPassword],
                         async (err) => {
                             if (err) {
                                 console.error('Erreur lors de l\'insertion dans la base de données :', err);
@@ -183,8 +184,10 @@ app.get('/userData', (req, res) => {
         const userData = {
             nom: req.user.nom ? req.user.nom : "Non spécifié",
             prenom: req.user.prenom ? req.user.prenom : "Non spécifié",
+            dateNaiss: req.user.dateNaiss ? req.user.dateNaiss : "Non spécifiée",
             email: req.user.email,
-            ville: req.user.ville ? req.user.ville : "Non spécifiée"
+            pays: req.user.pays ? req.user.pays : "Non spécifié",
+            codePostal: req.user.codePostal ? req.user.codePostal : "Non spécifié"
         };
         res.json(userData);
     } else {

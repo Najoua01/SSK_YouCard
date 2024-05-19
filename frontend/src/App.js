@@ -2,10 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './Pages/Home';
+import Avantages from './Pages/Avantages';
+import Actualites from './Pages/Actualites';
+import Agenda from './Pages/Agenda';
+import Partenaires from './Pages/Partenaires';
 import DevenirMembre from './Pages/DevenirMembre';
 import ProfilePage from './Pages/ProfilePage';
 import Navbar from './Components/NavBar/NavBar';
 import Footer from './Components/Footer/Footer';
+import Connexion from './Pages/Connexion';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -45,7 +50,12 @@ function App() {
       <Navbar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/avantages" element={<Avantages />} />
+        <Route path="/actualites" element={<Actualites />} />
+        <Route path="/agenda" element={<Agenda />} />
+        <Route path="/partenaires" element={<Partenaires />} />
         <Route path="/devenir-membre" element={<DevenirMembre />} />
+        <Route path="/connexion" element={<Connexion />} />
         <Route path="/profil" element={<ProfilePage />} />
       </Routes>
       <Footer />
