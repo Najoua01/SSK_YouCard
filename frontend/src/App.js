@@ -11,6 +11,7 @@ import ProfilePage from './Pages/ProfilePage';
 import Navbar from './Components/NavBar/NavBar';
 import Footer from './Components/Footer/Footer';
 import Connexion from './Pages/Connexion';
+import LogoutButton from './Components/LogoutButton/LogoutButton';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -32,8 +33,12 @@ function App() {
   }, []);
 
   const handleLogout = async () => {
+    console.log("Déconnexion en cours..."); 
     try {
-      const response = await fetch('http://localhost:8000/logout', { method: 'GET' });
+      const response = await fetch('http://localhost:8000/logout', { 
+        method: 'GET',
+        credentials: 'include'
+      });
       if (response.ok) {
         setIsLoggedIn(false);
         window.location.href = '/';
@@ -55,9 +60,10 @@ function App() {
         <Route path="/agenda" element={<Agenda />} />
         <Route path="/partenaires" element={<Partenaires />} />
         <Route path="/devenir-membre" element={<DevenirMembre />} />
-        <Route path="/connexion" element={<Connexion />} />
+        <Route path="/connexion" element={isLoggedIn ? <Home /> : <Connexion />} />
         <Route path="/profil" element={<ProfilePage />} />
       </Routes>
+      {isLoggedIn && <LogoutButton onLogout={handleLogout} />}
       <Footer />
     </div>
   );

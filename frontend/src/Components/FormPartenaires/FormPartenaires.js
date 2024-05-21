@@ -6,12 +6,12 @@ import { City } from 'country-state-city';
 countries.registerLocale(require('i18n-iso-countries/langs/fr.json')); // Enregistre la locale française
 
 const Partenaires = () => {
-    const [step, setStep] = useState(1);
-    const [formData, setFormData] = useState({
+    const defaultFormData = {
         nom: '',
         prenom: '',
         email: '',
         password: '',
+        confirmPassword: '',
         pays: '',
         ville: '',
         codePostal: '',
@@ -23,8 +23,11 @@ const Partenaires = () => {
         contactEmail: '',
         contactTelephone: '',
         acceptConditions: false,
-    });
+        role: 'partenaire'
+    };
 
+    const [step, setStep] = useState(1);
+    const [formData, setFormData] = useState(defaultFormData);
     const [errorMessage, setErrorMessage] = useState('');
     const [cities, setCities] = useState([]);
 
@@ -55,6 +58,10 @@ const Partenaires = () => {
 
     const handleNext = (e) => {
         e.preventDefault();
+        if (formData.password !== formData.confirmPassword) {
+            setErrorMessage('Les mots de passe ne correspondent pas.');
+            return;
+        }
         setStep(step + 1);
     };
 
@@ -66,7 +73,7 @@ const Partenaires = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('/signup-partenaire', {
+            const response = await fetch('http://localhost:8000/signup-partenaire', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -75,7 +82,10 @@ const Partenaires = () => {
             });
 
             if (response.ok) {
-                setStep(step + 1); // Passer à l'étape suivante si la soumission est réussie
+                alert('Inscription réussie!');
+                setFormData(defaultFormData); // Réinitialiser le formulaire
+                setStep(1); // Réinitialiser à l'étape 1 après la soumission réussie
+                setErrorMessage('');
             } else {
                 const errorData = await response.json();
                 setErrorMessage('Erreur lors de l\'inscription : ' + errorData.error);
@@ -111,8 +121,8 @@ const Partenaires = () => {
                         <label>Mot de passe</label>
                         <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Mot de passe" />
                         <br/>
-                        <label>Code postal</label>
-                        <input type="text" name="codePostal" value={formData.codePostal} onChange={handleChange} placeholder="Code postal" />
+                        <label>Confirmer le mot de passe</label>
+                        <input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} placeholder="Confirmer le mot de passe" />
                         <br/>
                         <label>Pays</label>
                         <Select
@@ -132,6 +142,9 @@ const Partenaires = () => {
                             placeholder="Sélectionnez une ville"
                             isDisabled={!formData.pays}
                         />
+                        <br/>
+                        <label>Code postal</label>
+                        <input type="text" name="codePostal" value={formData.codePostal} onChange={handleChange} placeholder="Code postal" />
                         <br/>
                         <label>Téléphone</label>
                         <input type="text" name="telephone" value={formData.telephone} onChange={handleChange} placeholder="Téléphone" />

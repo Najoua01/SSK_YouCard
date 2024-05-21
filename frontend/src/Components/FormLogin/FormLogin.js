@@ -9,16 +9,19 @@ const LoginForm = () => {
         event.preventDefault();
 
         try {
-            const response = await fetch('/login', {
+            const response = await fetch('http://localhost:8000/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ email, password, rememberMe }),
+                credentials: 'include' // pour gérer les cookies de session
             });
 
             if (response.ok) {
-                window.location.href = '/profil';
+                // const data = await response.json();
+                // alert('Connexion réussie : ' + data.message);  test
+                window.location.href = '/';
             } else {
                 const errorData = await response.json();
                 alert('Erreur lors de la connexion : ' + (errorData.error || 'Erreur inconnue'));
