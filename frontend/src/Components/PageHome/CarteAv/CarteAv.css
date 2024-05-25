@@ -40,7 +40,7 @@
     border-radius: 11px;
     border: 1px #F5F5F5 ;
 }
- input{
+.search-box input{
     width: 500px;
     margin: 7px 31px;
     padding: 10px;
@@ -98,7 +98,7 @@
     scroll-snap-type: mandatory;
     scroll-behavior: smooth;
 }
-img{
+.image img{
     scroll-snap-align: start;
     border-radius: 31px;
     
