@@ -58,41 +58,31 @@ const Partenaires = () => {
 
     const handleNext = (e) => {
         e.preventDefault();
+        setErrorMessage('');
+
+        for (let key in formData) {
+            if (formData.hasOwnProperty(key) && !formData[key] && key !== 'role' && key !== 'acceptConditions') {
+                setErrorMessage('Tous les champs doivent être remplis.');
+                return;
+            }
+        }
+    
+        if (!formData.acceptConditions) {
+            setErrorMessage('Vous devez accepter les conditions générales.');
+            return;
+        }
+    
         if (formData.password !== formData.confirmPassword) {
             setErrorMessage('Les mots de passe ne correspondent pas.');
             return;
         }
+    
+        // setErrorMessage('');   // je dois laisser ça ou pas?
         setStep(step + 1);
     };
 
-    const handlePrevious = (e) => {
-        e.preventDefault();
-        setStep(step - 1);
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await fetch('http://localhost:8000/signup-partenaire', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-
-            if (response.ok) {
-                alert('Inscription réussie!');
-                setFormData(defaultFormData); // Réinitialiser le formulaire
-                setStep(1); // Réinitialiser à l'étape 1 après la soumission réussie
-                setErrorMessage('');
-            } else {
-                const errorData = await response.json();
-                setErrorMessage('Erreur lors de l\'inscription : ' + errorData.error);
-            }
-        } catch (error) {
-            setErrorMessage('Erreur lors de l\'inscription : ' + error.message);
-        }
+    const handleRedirect = () => {
+        window.location.href = '/';
     };
 
     const countryOptions = Object.entries(countries.getNames("fr")).map(([code, name]) => ({ label: name, value: code }));
@@ -171,7 +161,7 @@ const Partenaires = () => {
                         <label>Téléphone</label>
                         <input type="text" name="contactTelephone" value={formData.contactTelephone} onChange={handleChange} placeholder="Téléphone" />
                         <br/>
-                        <button type="submit">Suivant</button>
+                        <button type="submit">Confirmer</button>
                     </form>
                 </div>
             )}
@@ -181,8 +171,7 @@ const Partenaires = () => {
                     <p>Merci d'avoir rempli le formulaire !<br/>
                     Nous allons maintenant vérifier votre compte et nous vous contacterons dans les plus brefs délais.</p>
                     <p>✔</p>
-                    <button onClick={handleSubmit}>Confirmer</button>
-                    <button onClick={handlePrevious}>Précédent</button>
+                    <button onClick={handleRedirect}>Revenir à la page d'accueil</button>
                 </div>
             )}
         </div>

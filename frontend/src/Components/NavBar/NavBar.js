@@ -11,9 +11,14 @@ return (
         <Link to="/agenda">Agenda</Link>
         <Link to="/partenaires">Partenaires</Link>
         <Link to="/devenir-membre">Devenir membre</Link>
-        <Link to="/connexion">Connexion</Link>
-        <Link to="/profil">Profil</Link>
-        {isLoggedIn && <LogoutButton onLogout={onLogout} />}
+        {isLoggedIn ? (
+                <>
+                    <Link to="/profil">Profil</Link>
+                    <LogoutButton onLogout={onLogout} />
+                </>
+            ) : (
+                <Link to="/connexion">Connexion</Link>
+            )}
     </nav>
     );
 }
