@@ -1,0 +1,144 @@
+.card-container{
+    margin: 2rem 6rem;
+    width: 90%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.card-av{
+    background-color: #C1E5E9;
+    border-radius: 35px;
+    width: 50%;
+    margin: 0 60px ;
+    margin-bottom: 100px;
+    height: 400px;
+}
+.card-av h1{
+    font-size: 25px;
+    color: #191933;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.dropdown .dropdown-content{
+    margin: auto;
+    margin-top: 1px;
+    padding: 10px;
+    background: #fff;
+    border-radius: 11px;
+    border: 1px #F5F5F5 ;
+    width: 500px;
+}
+.categories{
+    width: 500px;
+    margin: 7px 31px;
+    padding: 10px;
+    background: #fff;
+    color: dimgrey;
+    border-radius: 11px;
+    border: 1px #F5F5F5 ;
+}
+.search-box input{
+    width: 500px;
+    margin: 7px 31px;
+    padding: 10px;
+    background: #fff;
+    border-radius: 11px;
+    border: none;
+}
+
+
+.dropdown .dropdown-content .dropdown-item{
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.dropdown .dropdown-content .dropdown-item:hover{
+    background: #F5F5F5;
+    border-radius: 11px;
+    
+}
+.card-carou{
+    background-color: #C1E5E9;
+    border-radius: 35px;
+    width: 50%;
+    margin: 0 60px ;
+    margin-bottom: 100px;
+    height: 400px;
+}
+.card-carou h1{
+    font-size: 25px;
+    color: #191933;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.toutav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-av .btnav{
+    margin: 20px 200px;
+    padding: 15px 25px;
+    background-color: #191933;
+    color: #fff;
+    border-radius: 12px;
+    border: none;
+    text-align: center;
+
+}
+.slide-panel{
+    display: flex;
+    align-items: center;
+    overflow-x: scroll;
+    scroll-snap-type: mandatory;
+    scroll-behavior: smooth;
+}
+.image img{
+    scroll-snap-align: start;
+    border-radius: 31px;
+    
+}
+.image{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.prev, .next {
+    width: 2em;
+    height: 2em;
+    cursor: pointer;
+    transition: 0.25S;
+}
+.prev:hover, .next:hover{ transform: scale(1.25);}
+
+.prev{ background-image: url(../../../assets/carousel/prev.png);}
+.next{ background-image: url(../../../assets/carousel/next.png);}
+
+::-webkit-scrollbar{
+    display: none;
+}
+
+.dots {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .dot {
+    height: 15px;
+    width: 15px;
+    margin: 20px 9px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .dot.active {
+    background-color: #717171;
+  }
+  

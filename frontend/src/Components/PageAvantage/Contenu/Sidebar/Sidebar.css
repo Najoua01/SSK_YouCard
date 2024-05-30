@@ -1,0 +1,30 @@
+/* .side-section{
+    display: flex;
+} */
+.sidebar{
+    margin: 0 50px;
+    width: 100%;
+     
+    height: 100%;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-title{
+    font-size: 22px;
+    font-weight: 700;
+    color: #707070;
+    margin-bottom: 20px;
+}
+h3{
+    color: #707070;
+    font-weight: 500;
+    margin-bottom: 15px;
+    margin-top: 30px;
+   
+}
+
+hr {
+    width: 80%;
+}
