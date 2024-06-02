@@ -1,0 +1,9 @@
+{
+  "projects": {
+    "default": "youcard-cd002",
+    "youcardBackend": "youcardbackend-9e4c3"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}

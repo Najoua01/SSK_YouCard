@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import './firebaseConfig';
+import SignUp from './firebaseSignUp';
+import SignIn from './firebaseSignIn';
 import './App.css';
 import Home from './Pages/Home';
 import Avantages from './Pages/Avantages';
@@ -54,6 +57,8 @@ function App() {
     <div className="App">
       <Navbar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
       <Routes>
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signin" element={<SignIn />} />
         <Route path="/" element={<Home />} />
         <Route path="/avantages" element={<Avantages />} />
         <Route path="/actualites" element={<Actualites />} />
