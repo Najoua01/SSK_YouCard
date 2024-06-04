@@ -3,9 +3,9 @@ import UserProfile from '../Components/UserProfile/UserProfile';
 
 function ProfilePage() {
 return (
-<div>
-    <UserProfile />
-</div>
+    <div>
+        <UserProfile />
+    </div>
 );
 }
 
