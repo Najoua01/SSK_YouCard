@@ -3,7 +3,9 @@ import FormPartenaires from "../Components/FormPartenaires/FormPartenaires";
 
 function Partenaires() {
     return (
-        <FormPartenaires />
+        <div>
+            <FormPartenaires />
+        </div>
     );
 }
 

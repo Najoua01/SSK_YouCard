@@ -3,7 +3,9 @@ import FormLogin from '../Components/FormLogin/FormLogin';
 
 function Connexion() {
     return (
-        <FormLogin />
+        <div>
+            <FormLogin />
+        </div>
     );
 }
 

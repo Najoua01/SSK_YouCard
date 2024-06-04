@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import LogoutButton from '../LogoutButton/LogoutButton';
+import './Navbar.css';
 
 function Navbar({ isLoggedIn, onLogout }) {
 return (
-    <nav>
+    <nav className='container'>
         <Link to="/">YouCard</Link>
         <Link to="/avantages">Avantages</Link>
         <Link to="/actualites">Actualités</Link>
@@ -17,7 +18,7 @@ return (
                     <LogoutButton onLogout={onLogout} />
                 </>
             ) : (
-                <Link to="/connexion">Connexion</Link>
+                <Link to="/connexion" className='btn'>Connexion</Link>
             )}
     </nav>
     );

@@ -2,7 +2,9 @@ import React from "react";
 
 function Actualites() {
     return (
-        <h1>page actualités</h1>
+        <div>
+            <h1>page actualités</h1>
+        </div>
     );
 }
 
