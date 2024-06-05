@@ -9,8 +9,22 @@ import img6 from '../../../assets/carousel/image-6.png'
 
 function CarteAv() {
   const categories = [
-    { name: "Musée" },
-    { name: "Expositions" },
+    { name: "Alimentaire" },
+    { name: "Animaliers" },
+    { name: "Art & Expositions" },
+    { name: "Beauté" },
+    { name: "Commerce" },
+    { name: "Commerce de services" },
+    { name: "Education et culture" },
+    { name: "Espace" },
+    { name: "Hotel" },
+    { name: "Loisirs créatifs" },
+    { name: "Mode" },
+    { name: "Shopping" },
+    { name: "Spectacle & événements" },
+    { name: "Tourisme" },
+    { name: "Transports" },
+    { name: "Utilitaire" },
   ];
 
   const Pays = [
@@ -56,7 +70,7 @@ function CarteAv() {
                     <option value={ctr.name}>{ctr.name}</option>
                 ))}
               </select>
-             
+
               <br />
               <select className="categories" value={country}>
                 <option className="dropdown-content"> Pays </option>
@@ -65,11 +79,12 @@ function CarteAv() {
                 ))}
               </select> 
               </div>
-             
+                <div className='codepost-home'>
                 <input type='text' placeholder='Code postal'/>
+                </div>
                 <button className='btnav'>Rechercher</button>
               </div>
- 
+
               <div className='card-carou'>
               <h1>Ils ont rejoint YouCard </h1>
                 <div className='image'>
@@ -94,4 +109,3 @@ function CarteAv() {
         }
         
         export default CarteAv
-

@@ -1,15 +1,12 @@
 import React from "react";
 import Title from '../Components/PageAvantage/Title/Title';
-// import Sidebar from '../Components/PageAvantage/Sidebar/Categories';
-import Categories from '../Components/PageAvantage/Sidebar/Categories';
-
+import Contenu from '../Components/PageAvantage/Contenu/Contenu';
 
 function Avantages() {
     return (
         <div>
             <Title />
-            {/* <Sidebar /> */}
-            <Categories />
+            <Contenu />
         </div>
     );
 }

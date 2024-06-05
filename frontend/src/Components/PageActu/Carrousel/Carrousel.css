@@ -1,0 +1,152 @@
+/* 
+.c-container {
+    position: relative;
+    
+    margin: auto;
+    background-color: #EDDDFF;
+  }
+  
+  .text-events h2{
+    font-size: 30px;
+    font-weight: 700;
+    color: black;
+    text-align: center;
+    padding: 20px;
+    padding-top: 30px;
+}
+.text-events p{
+    font-size: 17px;
+    color: black;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+  
+  .big-carrousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  
+  .slide-panel {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .slide-panel .img-carte-av{
+    width: '100%'; 
+    height: '100%';
+    width: 450px;
+}
+.slide-panel .texte-carte{
+    width: '100%'; 
+    height: '100%';
+    width: 450px;
+}
+  .cards-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: calc(100% * 2.5); 
+  }
+  
+  .slide-panel .carte-av {
+    flex: 0 0 37%; 
+    transition: opacity 0.5s ease-in-out;
+    
+  }
+  
+
+  .prev {
+    margin: 0 20px;
+  }
+  
+  .next {
+    margin-left: 10px;
+  }
+   */
+
+   .c-container {
+    position: relative;
+    margin: auto;
+    background-color: #EDDDFF;
+  }
+  
+  .text-events h2 {
+    font-size: 30px;
+    font-weight: 700;
+    color: black;
+    text-align: center;
+    padding: 20px;
+    padding-top: 30px;
+  }
+  
+  .text-events p {
+    font-size: 17px;
+    color: black;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  
+  .big-carrousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  
+  .slide-panel {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .cards-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%; /* Adjust width to fit 2.5 cards */
+  }
+  
+  .slide-panel .carte-av {
+    flex: 0 0 30%; /* Adjust width to show 2 and a half cards */
+    margin-right: 5%;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .slide-panel .carte-av.active {
+    opacity: 1;
+  }
+  
+  .slide-panel .img-carte-av .texte-carte{
+    width: 100%;
+    height: auto;
+    text-align: center;
+
+  }
+  
+  .slide-panel .img-carte-av{
+    width: '100%'; 
+    height: '100%';
+    width: 450px;
+}
+.slide-panel .texte-carte{
+    width: '100%'; 
+    height: '100%';
+    width: 450px;
+}
+
+  .prev {
+    margin: 0 10px;
+  }
+  
+  .next {
+    margin: 0 10px;
+  }
+  

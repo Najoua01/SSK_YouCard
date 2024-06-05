@@ -1,0 +1,53 @@
+
+  .filtre-section {
+    display: flex;
+    align-items: center; 
+    gap: 20px;
+
+  }
+  
+  .searchbox-f {
+    flex-grow: 1;
+    position: relative;
+  }
+  
+  .searchbox-f input {
+    width: 100%; 
+    padding: 10px; 
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    box-sizing: border-box; 
+  }
+  
+  .searchbox-f .fa-search {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #707070;
+  }
+  
+  .dropdown-f {
+    flex-shrink: 0; 
+  }
+  
+  .dropdown-f select {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    color: dimgray;
+    font-weight: 500;
+  }
+  
+  .codepost {
+    flex-shrink: 0; 
+  }
+  
+  .codepost input {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+  }
+  

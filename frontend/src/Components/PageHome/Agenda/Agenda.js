@@ -1,6 +1,6 @@
 import React from 'react'
 import './Agenda.css'
-import imageag from '../../../assets/ag-prov.png'
+// import imageag from '../../../assets/ag-prov.png'
 
 function Agenda () {
   return (
@@ -8,14 +8,14 @@ function Agenda () {
       <h1 className='home-titles'> Agenda </h1>
         <div className='container-ag'>
             <div className='agenda'>
-                <img src={imageag} alt="" />
+                {/* <img src={imageag} alt="" /> */}
             </div>
             <div className='agenda-act'>
 
                 <h2>TRÉSORS VIVANTS Didier Mélon et ses invités</h2>
                 <p>Le 26 April 2024 à Bruxelles-Schaerbeek</p>
                 <hr />
-               
+
                 <h2>La Vie trépidante de Brigitte Tornade Camille Kohler</h2>
                 <p>Du 01 Mai 2024 au 26 Mai 2024 à Brussels</p>
                 <hr />

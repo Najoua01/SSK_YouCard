@@ -1,6 +1,123 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+
 .section-ag{
     margin: 20px 150px;
-    margin-bottom: 100px;
+}
+
+
+.wrapper {
+    width: 450px;
+    border: 1px solid #cecece;
+    background-color: #fff;
+    border-radius: 20px;
+}
+.wrapper .container-ag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px 30px 10px;
+}
+.agenda {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px 0px 40px;
+}
+
+
+
+.container-ag .current-date {
+    font-size: 1.45rem;
+    font-weight: 500;
+}
+.container-ag .icons .chevron {
+    color: #038D9A;
+    font-size: 1.5rem;
+    margin: 0 1px;
+    text-align: center;
+    line-height:38px;
+    border-radius: 50%;
+    cursor: pointer;
+
+}
+.container-ag .icons .chevron:hover {
+    background-color: #038D9A;
+
+}
+
+
+.icons {
+    display: flex;
+    gap: 20px;
+}
+.container-ag .icons .chevron:last-child {
+    margin-right: -10px;
+}
+.calendar {
+    padding: 20px;
+
+}
+
+.calendar ul {
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+    text-align: center;
+}
+.calendar .days {
+    margin-bottom: 20px;
+}
+.calendar .days li {
+    z-index: 1;
+    cursor: pointer;
+    margin-top: 30px;
+}
+.days li.inactive {
+    color: #aaa;
+}
+.days li.active {
+    color: #fff;
+}
+.calendar .weeks li {
+    font-weight: 500;
+}
+.calendar ul li {
+    position: relative;
+    width: calc(100% / 7);
+}
+
+.calendar .days li::before {
+    position: absolute;
+    content: "";
+    height: 25px;
+    width: 25px;
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+    border-radius: 50%;
+    transform: translate(-50%, -50% );
+
+    
+}
+.days li:hover::before {
+    background-color: #f2f2f2;
+}
+
+.days li.active::before {
+    background-color:#038D9A ;
+}
+
+
+.chevron {
+    width: 25px;
+    height: 25px;
 }
  p {
     text-align: right;
@@ -21,32 +138,31 @@
     border: 2px solid #cecece;
     background-color: #fff;
     border-radius: 15px;
-    
     margin-left:40px;
-    width: 100%;
+    width: 900px ;
     text-align: left;
 }
 .agenda-act hr {
     width: 100%;
-    /* position: absolute;
-    left: 0; */
+    
 }
 .agenda-act h2 {
     color: #707070;
     font-size: 21px;
-    padding: 7px 30px 2px 30px;
+    padding: 20px 30px 3px 30px;
 }
 .agenda-act p {
-    color: #707070;
+    color: #038D9A;
     font-size: 16px;
-    padding: 2px 30px 7px 30px;
+    font-weight: 500;
+    padding: 3px 30px 20px 30px;
     text-align: left;
 }
 .line {
     height: 1px;
     background-color: #ccc;
     margin: 16px 0;
-  }
-  img{
-    width: 95%;
-  }
+}
+img{
+width: 95%;
+}

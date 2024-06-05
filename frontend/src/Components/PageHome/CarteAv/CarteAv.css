@@ -1,6 +1,6 @@
 .card-container{
     margin: 2rem 6rem;
-    width: 90%;
+    width: 89%;
     position: relative;
     display: flex;
     align-items: center;
@@ -40,7 +40,7 @@
     border-radius: 11px;
     border: 1px #F5F5F5 ;
 }
- input{
+.search-box input{
     width: 500px;
     margin: 7px 31px;
     padding: 10px;
@@ -49,7 +49,14 @@
     border: none;
 }
 
-
+.codepost-home input{
+    width: 500px;
+    margin: 7px 31px;
+    padding: 10px;
+    background: #fff;
+    border-radius: 11px;
+    border: none;
+}
 .dropdown .dropdown-content .dropdown-item{
     padding: 8px;
     cursor: pointer;
@@ -89,6 +96,7 @@
     border-radius: 12px;
     border: none;
     text-align: center;
+    cursor: pointer;
 
 }
 .slide-panel{
@@ -98,7 +106,7 @@
     scroll-snap-type: mandatory;
     scroll-behavior: smooth;
 }
-img{
+.image img{
     scroll-snap-align: start;
     border-radius: 31px;
     
@@ -126,19 +134,18 @@ img{
 .dots {
     text-align: center;
     margin-top: 10px;
-  }
-  
-  .dot {
-    height: 15px;
-    width: 15px;
-    margin: 20px 9px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    cursor: pointer;
-  }
-  
-  .dot.active {
-    background-color: #717171;
-  }
-  
+}
+
+.dot {
+height: 15px;
+width: 15px;
+margin: 20px 9px;
+background-color: #bbb;
+border-radius: 50%;
+display: inline-block;
+cursor: pointer;
+}
+
+.dot.active {
+background-color: #717171;
+}

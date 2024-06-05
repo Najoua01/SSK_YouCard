@@ -1,0 +1,64 @@
+.btn-filtre{
+    background-color: #038D9A;
+    color: #FFF;
+    padding: 10px 40px;
+    font-size: 16px;
+    border-radius: 15px;
+    cursor: pointer;
+    border: 0;
+    outline: 0;
+}
+
+.sa-container {
+display: flex;
+flex-direction: row;
+margin: 20px 200px 50px 150px  ;
+
+justify-content: space-between;
+}
+
+.filtre-actu{
+    display: flex;
+    flex: 4;
+    align-items: center;
+    margin-right: 20px;
+
+}
+.filtre-actu p{
+    font-size: 16px;
+    color: dimgray;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+.filtre-b{
+    display: flex;
+    flex: 1;
+    align-items: center;
+    margin-left: 75px;
+}
+
+.dropdown-date select{
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    color: dimgray;
+    font-weight: 500;
+}
+
+.searchbox-a input{
+    width: 450px;
+    padding: 10px; 
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    box-sizing: border-box; 
+}
+
+.searchbox-a .fa-search {
+    position: absolute;
+    right: 810px;
+    top: 885px;
+    /* top: 100%; */
+    transform: translateY(-50%);
+    color: #707070;
+  }

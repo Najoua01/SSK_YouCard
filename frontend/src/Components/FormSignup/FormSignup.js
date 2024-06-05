@@ -22,8 +22,12 @@ const SignupForm = () => {
     };
 
     const [formData, setFormData] = useState(defaultFormData);
-    const [cities, setCities] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
+    const countryOptions = ['BE', 'FR', 'LU', 'NL'].map(code => ({
+        label: countries.getName(code, 'fr'),
+        value: code
+    }));
+    const [cities, setCities] = useState([]);
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -93,8 +97,6 @@ const SignupForm = () => {
             setErrorMessage('Erreur lors de l\'inscription : ' + error.message);
         }
     };
-
-    const countryOptions = Object.entries(countries.getNames("fr")).map(([code, name]) => ({ label: name, value: code }));
 
     return (
         <form id="signup-form" onSubmit={handleSubmit}>

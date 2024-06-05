@@ -29,6 +29,10 @@ const Partenaires = () => {
     const [step, setStep] = useState(1);
     const [formData, setFormData] = useState(defaultFormData);
     const [errorMessage, setErrorMessage] = useState('');
+    const countryOptions = ['BE', 'FR', 'LU', 'NL'].map(code => ({
+        label: countries.getName(code, 'fr'),
+        value: code
+    }));
     const [cities, setCities] = useState([]);
 
     const handleChange = (e) => {
@@ -44,7 +48,7 @@ const Partenaires = () => {
         setFormData({
             ...formData,
             pays: selectedOption.label,
-            ville: '' // Reset the city when country changes
+            ville: ''
         });
         setCities(City.getCitiesOfCountry(countryCode).map(city => ({ label: city.name, value: city.name })));
     };
@@ -84,8 +88,6 @@ const Partenaires = () => {
     const handleRedirect = () => {
         window.location.href = '/';
     };
-
-    const countryOptions = Object.entries(countries.getNames("fr")).map(([code, name]) => ({ label: name, value: code }));
 
     return (
         <div>

@@ -1,0 +1,57 @@
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: space-between;
+    margin: 10px 100px;
+  }
+  
+  .cardA {
+    border: 1px solid #ccc;
+    border-radius: 18px;
+    padding: 20px;
+    width: calc(33% - 20px); /* Trois cartes par ligne avec un écart de 20px */
+    box-sizing: border-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff;
+    text-align: center;
+  }
+  
+  .cardA:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cardA img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .cardA h3 {
+    margin: 10px 0;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #038D9A;
+    border: 1px solid #038D9A;
+    border-radius: 15px;
+    padding: 10px 0;
+  }
+  
+  .cardA p {
+    margin: 5px 0;
+    padding: 0 15px;
+    font-size: 16px;
+    color: #666;
+    text-align: left;
+  }
+  
+  .card-date p{
+    font-size: 0.9em;
+    font-weight: 600;
+    color: black;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
+  

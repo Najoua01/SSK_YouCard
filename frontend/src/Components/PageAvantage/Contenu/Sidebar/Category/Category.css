@@ -1,0 +1,81 @@
+.sidebar-items{
+    margin-top: 20px;
+}
+
+.sidebar-label-container{
+    display: block;
+    position: relative;
+    padding-left: 55px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    color: #707070;
+}
+
+.sidebar-label-container input{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    height: 20px;
+    width: 20px;
+    background-color: #fff;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+
+}
+
+.sidebar-label-container:hover input~.checkmark{
+    background-color: #ccc;
+}
+.sidebar-label-container input:checked~.checkmark{
+    background-color: #038D9A;
+}
+.checkmark::after{
+    content: "";
+    position: absolute;
+    display: none;
+}
+.sidebar-label-container input:checked ~ .checkmark::after{
+    display: block;
+}
+.sidebar-label-container .checkmark::after{
+    top:4.9px;
+    left: 5px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #fff;
+}
+
+.sidebar-title-prix-title{
+    font-size: 22px;
+    color: #707070;
+    margin: 20px 0;
+}
+
+.show-more-button {
+    margin-left: 45px;
+    padding: 5px 10px;
+    font-weight: 700;
+    font-size: 16px;
+    color: #707070;
+    background-color: #F5F5F5;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+  }
+  
+  .show-more-button:hover {
+    background-color: #ccc;
+  }
+
+  .lic-container {
+    margin-top: 10px ;
+    margin-bottom: 40px;
+  }
+  
